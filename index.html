@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll Snap Page with Footer Section</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+  /* Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Contenedor principal con scroll snap */
+  main {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100%;
+  }
+  
+  /* Sticky Header */
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 10rem;
+    background-color: #0077cc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: height 0.3s ease;
+    z-index: 10;
+  }
+  
+  .sticky-header.scrolled {
+    height: 5rem;
+  }
+  
+  .snap-section {
+    scroll-snap-align: start;
+    height: 64rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+  }
+  
+  .section-1 { background-color: #4caf50; }
+  .section-2 { background-color: #2196f3; }
+  .section-3 { background-color: #ff9800; }
+  .section-4 { background-color: #f44336; }
+  
+  .footer-section {
+    height: 15rem;
+    background-color: #333;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+  
+  .grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+  }
+  
+  .grid-layout img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .grid-layout .text-content {
+    padding: 1rem;
+    font-size: 1.2rem;
+    color: white;
+  }
+  
+  /* Media Queries para adaptar imágenes y diseño */
+  
+  /* Pantallas medianas (tablets y laptops pequeñas) */
+  @media (max-width: 1024px) {
+    .snap-section {
+      height: 50rem;
+      font-size: 1.8rem;
+    }
+  
+    .grid-layout img {
+      max-width: 80%;
+    }
+  
+    .grid-layout .text-content {
+      font-size: 1rem;
+    }
+  }
+  
+  /* Pantallas pequeñas (smartphones) */
+  @media (max-width: 768px) {
+    .grid-layout {
+      grid-template-columns: 1fr;
+    }
+  
+    .grid-layout img {
+      max-width: 90%;
+      margin-bottom: 1rem;
+    }
+  
+    .grid-layout .text-content {
+      font-size: 0.9rem;
+    }
+  
+    .snap-section {
+      height: 40rem;
+      font-size: 1.5rem;
+    }
+  
+    .footer-section {
+      font-size: 1rem;
+      height: 12rem;
+    }
+  }
+  </style>
+
+<body>
+  <header class="sticky-header">
+    <div class="header-content">My Sticky Header</div>
+  </header>
+  <main>
+    <section class="snap-section section-1 grid-layout">
+      <img src="https://cdn.prod.website-files.com/66b4fa67338e808e254e7b8c/66d4d10ef27f67ac93562cac_men-powerpay.svg" alt="Image 1">
+      <div class="text-content">Section 1 Text</div>
+    </section>
+    <section class="snap-section section-2 grid-layout">
+      <img src="https://cdn.prod.website-files.com/66b4fa67338e808e254e7b8c/66c333f1a0adaff805dd803c_Group%2027576%20(1).png" alt="Image 2">
+      <div class="text-content">Section 2 Text</div>
+    </section>
+    <section class="snap-section section-3 grid-layout">
+      <img src="https://cdn.prod.website-files.com/66b4fa67338e808e254e7b8c/671987733e4626ba66099af9_bbva-info-payment-two.png" alt="Image 3">
+      <div class="text-content">Section 3 Text</div>
+    </section>
+    <section class="snap-section section-4 grid-layout">
+      <img src="https://cdn.prod.website-files.com/66b4fa67338e808e254e7b8c/671985a7045d37a9abe43335_bbva-info-payment-three.png" alt="Image 4">
+      <div class="text-content">Section 4 Text</div>
+    </section>
+    <section class="snap-section footer-section grid-layout">
+      <img src="path/to/footer-image.jpg" alt="Footer Image">
+      <div class="text-content">Footer Section Text</div>
+    </section>
+  </main>
+  <script>
+    const header = document.querySelector('.sticky-header');
+const main = document.querySelector('main');
+
+main.addEventListener('scroll', () => {
+  if (main.scrollTop > 50) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+});
+
+  </script>
+  
+</body>
+</html>
